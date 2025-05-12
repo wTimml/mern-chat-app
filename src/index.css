@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+/* Default (Dark) Theme */
+:root {
+  --color-background: #101828;
+  --color-surface: #1e2939;
+  --color-shadow: #1e2939;
+  --color-text-primary: #99a1af;
+  --color-primary: #677D6A;
+  --color-primary-hover: #40534C;
+  --color-title: #ffffff;
+
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: var(--color-primary);
+  text-decoration: inherit;
+}
+a:hover {
+  color: var(--color-primary-hover);
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  color: var(--color-title);
+  /* font-size: 3.2em; */
+  /* line-height: 1.1; */
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: var(--color-primary-hover);
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@theme {
+  --color-background: #101828;
+  --color-surface: #1e2939;
+  --color-shadow: #1e2939;
+  --color-text-primary: #99a1af;
+  --color-primary: #677D6A;
+  --color-title: #ffffff;
+}
+
+/* Light Mode Overrides */
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-background: #ffffff;
+    --color-surface: #ffffff;
+    --color-text-primary: #213547;
+    --color-title: #000000; /* Updated to be visible on light bg */
+
+    color: var(--color-text-primary);
+    background-color: var(--color-background);
+  }
+
+  @theme {
+    --color-background: #ffffff;
+    --color-surface: #ffffff;
+    --color-shadow: gray;
+    --color-text-primary: #213547;
+    --color-title: #000000; /* Updated to be visible on light bg */
+  }
+
+  a:hover {
+    color: var(--color-primary-hover);
+  }
+
+  button {
+    background-color: var(--color-primary);
+  }
+}
