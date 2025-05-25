@@ -47,7 +47,12 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
 
     const handleReceiveMessage = (message: MessageDataType) => {
       const store = useAppStore.getState();
-      const { selectedChatData, selectedChatType, addMessage } = store;
+      const {
+        selectedChatData,
+        selectedChatType,
+        addMessage,
+        refreshContacts,
+      } = store;
 
       // console.log("Received message:", {
       //   message,
@@ -55,9 +60,13 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
       //   chatType: selectedChatType,
       // });
 
-      if (!selectedChatData || !selectedChatType) return;
+      //refresh when receiving any message
+      refreshContacts();
 
-      console.log("socketcontext", selectedChatData, message);
+      if (!selectedChatData || !selectedChatType) {
+        return;
+      }
+
       const isRelevantMessage =
         (typeof message.sender === "object"
           ? message.sender._id
@@ -69,12 +78,29 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
       if (isRelevantMessage) {
         addMessage(message);
       }
+
+      // Always refresh contacts when receiving any message
+      refreshContacts();
     };
 
+    // Add handler for sent messages (if your backend emits this)
+    const handleMessageSent = (message: MessageDataType) => {
+      const store = useAppStore.getState();
+      const { refreshContacts } = store;
+
+      console.log("Message sent confirmation:", message);
+      // Refresh contacts when a message is sent
+      refreshContacts();
+    };
+
+    // listener
     socket.current.on("receiveMessage", handleReceiveMessage);
+    socket.current.on("messageSent", handleMessageSent);
 
     return () => {
       if (socket.current) {
+        socket.current.off("receiveMessage", handleReceiveMessage);
+        socket.current.off("messageSent", handleMessageSent);
         socket.current.disconnect();
       }
     };

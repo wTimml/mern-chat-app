@@ -7,17 +7,19 @@ interface DisplayUserProfileProps {
   userProfileData: UserData;
   showDetails?: boolean;
   showChatType?: string;
+  size?: number;
 }
 
 export default function DisplayUserProfile({
   userProfileData,
   showDetails = false,
   showChatType = "contact",
+  size = 12,
 }: DisplayUserProfileProps) {
   return (
     <>
-      <div className="w-12 h-12 relative">
-        <Avatar className="h-12 w-12 overflow-hidden rounded-full">
+      <div className={`w-${size} h-${size} relative`}>
+        <Avatar className={`h-${size} w-${size} overflow-hidden rounded-full`}>
           {userProfileData?.profileImage ? (
             <AvatarImage
               src={`${HOST}/${userProfileData.profileImage}`}
@@ -26,7 +28,7 @@ export default function DisplayUserProfile({
             />
           ) : (
             <div
-              className={`flex h-12 w-12 items-center justify-center rounded-full border border-solid font-bold uppercase text-text-primary ${getColor(
+              className={`flex h-${size} w-${size} items-center justify-center rounded-full border border-solid font-bold uppercase text-text-primary ${getColor(
                 userProfileData?.color ?? 0
               )}`}
             >

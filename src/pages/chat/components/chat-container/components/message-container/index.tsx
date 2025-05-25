@@ -40,8 +40,6 @@ const MessageContainer = () => {
     }
   }, [selectedChatMessages]);
 
-  console.log("selectedChatMessages", selectedChatMessages);
-
   const renderMessages = () => {
     let lastDate: string | null = null;
     return selectedChatMessages?.map(
@@ -63,8 +61,6 @@ const MessageContainer = () => {
       }
     );
   };
-
-  console.log("message sender");
 
   const renderDMMessages = (message: MessageDataType) => (
     <div

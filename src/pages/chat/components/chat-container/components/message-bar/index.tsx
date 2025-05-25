@@ -35,6 +35,8 @@ const MessageBar = () => {
 
   const handleSendMessage = async () => {
     if (selectedChatType === "contact") {
+      const { refreshContacts } = useAppStore.getState();
+
       socket.emit("sendMessage", {
         sender: userInfo?.id,
         content: message,
@@ -42,6 +44,12 @@ const MessageBar = () => {
         messageType: "text",
         fileUrl: undefined,
       });
+
+      // Refresh contacts immediately after sending
+      refreshContacts();
+
+      //clear input
+      setMessage("");
     }
   };
 

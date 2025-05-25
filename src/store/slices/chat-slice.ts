@@ -7,9 +7,16 @@ export interface ChatSlice {
     selectedChatType: ChatType;
     selectedChatData: UserData | undefined;
     selectedChatMessages: MessageDataType[] | undefined;
+    directMessagesContacts: [] | undefined;
+    contactsLastUpdated: number | undefined;
+
     setSelectedChatType: (selectedChatType: ChatType) => void;
     setSelectedChatData: (selectedChatData: UserData) => void;
     setSelectedChatMessages: (selectedChatMessages: MessageDataType[]) => void;
+    setDirectMessagesContacts: (directMessagesContacts: []) => void;
+
+    refreshContacts: () => void;
+
     closeChat: () => void;
     addMessage: (message: MessageDataType) => void;
 }
@@ -18,38 +25,29 @@ export const createChatSlice = (set: any, get: any, api: any ): ChatSlice => ({
     selectedChatType: undefined,
     selectedChatData: undefined,
     selectedChatMessages: [],
+    directMessagesContacts: [],
+    contactsLastUpdated: 0,
+
     setSelectedChatType: (selectedChatType: ChatType) => set({ selectedChatType}),
     setSelectedChatData: (selectedChatData: UserData) => set({
         selectedChatData
-        // : {
-        //     _id: selectedChatData._id,
-        //     email: selectedChatData.email,
-        //     firstName: selectedChatData.firstName,
-        //     lastName: selectedChatData.lastName,
-        //     profileImage: selectedChatData.profileImage,
-        //     color: selectedChatData.color,
-        //     profileSetup: selectedChatData.profileSetup
-        // }
+
     }),
     setSelectedChatMessages: (selectedChatMessages: MessageDataType[]) => set({ selectedChatMessages}),
-    closeChat: () => set({ selectedChatData: undefined, selectedChatType: undefined, selectedChatMessages: []}),
-    addMessage: (message: MessageDataType) => {
-        // const selectedChatMessages = get().selectedChatMessages;
-        // const selectedChatType = get().selectedChatType;
+    setDirectMessagesContacts: (directMessagesContacts: []) => set({ directMessagesContacts}),
 
-        // set({
-        //     selectedChatMessages: [
-        //         ...selectedChatMessages, {
-        //              ...message,
-        //              recipient: selectedChatType === 'channel' ? message.recipient : message.recipient._id,
-        //              sender: selectedChatType === 'channel' ? message.sender : message.sender._id,
-        //         }
-        //     ]
-        // })
+    // Add this method to trigger contacts refresh
+    refreshContacts: () => set({ contactsLastUpdated: Date.now() }),
+
+    closeChat: () => set({ selectedChatData: undefined, selectedChatType: undefined, selectedChatMessages: []}),
+
+    addMessage: (message: MessageDataType) => {
+
         const { selectedChatMessages = [] } = get();
         set({
             selectedChatMessages: [...selectedChatMessages, message]
         });
 
-    }
+    },
+    
 })
