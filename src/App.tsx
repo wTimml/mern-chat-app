@@ -34,7 +34,7 @@ const App = () => {
         } else {
           setUserInfo(undefined);
         }
-        console.log({ response });
+        // console.log("apptsx response ", { response });
       } catch (error) {
         setUserInfo(undefined);
         console.error("Error fetching user data:", error);

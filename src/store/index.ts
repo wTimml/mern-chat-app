@@ -1,9 +1,11 @@
 import { create } from 'zustand';
 import { createAuthSlice } from './slices/auth-slice.ts';
 import type { AuthSlice } from './slices/auth-slice.ts';
+import { createChatSlice, type ChatSlice } from './slices/chat-slice.ts';
 
-type AppStore = AuthSlice
+type AppStore = AuthSlice & ChatSlice
 
 export const useAppStore = create<AppStore>()((...a) => ({
     ...createAuthSlice(...a),
+    ...createChatSlice(...a)
 }));

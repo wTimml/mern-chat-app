@@ -179,57 +179,73 @@ const Auth = () => {
               </TabsList>
               {/* Login Content */}
               <TabsContent className="flex flex-col gap-5 mt-10" value="login">
-                <Input
-                  placeholder="Email"
-                  type="email"
-                  value={loginEmail}
-                  onChange={(e) => setLoginEmail(e.target.value)}
-                ></Input>
-                <Input
-                  placeholder="Password"
-                  type="password"
-                  value={loginPassword}
-                  onChange={(e) => setLoginPassword(e.target.value)}
-                ></Input>
-                {loginErrors.length > 0 && (
-                  <div className="bg-surface text-red-700 p-3 rounded">
-                    {loginErrors.map((error, index) => (
-                      <p key={index}>{error}</p>
-                    ))}
-                  </div>
-                )}
-                <Button onClick={handleLogin}>Login</Button>
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    handleLogin();
+                  }}
+                  className="flex flex-col gap-5"
+                >
+                  <Input
+                    placeholder="Email"
+                    type="email"
+                    value={loginEmail}
+                    onChange={(e) => setLoginEmail(e.target.value)}
+                  ></Input>
+                  <Input
+                    placeholder="Password"
+                    type="password"
+                    value={loginPassword}
+                    onChange={(e) => setLoginPassword(e.target.value)}
+                  ></Input>
+                  {loginErrors.length > 0 && (
+                    <div className="bg-surface text-red-700 p-3 rounded">
+                      {loginErrors.map((error, index) => (
+                        <p key={index}>{error}</p>
+                      ))}
+                    </div>
+                  )}
+                  <Button type="submit">Login</Button>
+                </form>
               </TabsContent>
               {/* Signup Content */}
               <TabsContent className="flex flex-col gap-5 mt-10" value="signup">
-                <Input
-                  placeholder="Email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                ></Input>
-                <Input
-                  placeholder="Password"
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                ></Input>
-                <Input
-                  placeholder="Confirm Password"
-                  type="password"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                ></Input>
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    handleSignup();
+                  }}
+                  className="flex flex-col gap-5"
+                >
+                  <Input
+                    placeholder="Email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  ></Input>
+                  <Input
+                    placeholder="Password"
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  ></Input>
+                  <Input
+                    placeholder="Confirm Password"
+                    type="password"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                  ></Input>
 
-                {signupErrors.length > 0 && (
-                  <div className="bg-surface text-red-700 p-3 rounded">
-                    {signupErrors.map((error, index) => (
-                      <p key={index}>{error}</p>
-                    ))}
-                  </div>
-                )}
+                  {signupErrors.length > 0 && (
+                    <div className="bg-surface text-red-700 p-3 rounded">
+                      {signupErrors.map((error, index) => (
+                        <p key={index}>{error}</p>
+                      ))}
+                    </div>
+                  )}
 
-                <Button onClick={handleSignup}>Signup</Button>
+                  <Button type="submit">Signup</Button>
+                </form>
               </TabsContent>
             </Tabs>
           </div>
