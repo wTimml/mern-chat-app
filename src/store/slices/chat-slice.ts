@@ -9,11 +9,19 @@ export interface ChatSlice {
     selectedChatMessages: MessageDataType[] | undefined;
     directMessagesContacts: [] | undefined;
     contactsLastUpdated: number | undefined;
+    isUploading: boolean,
+    isDownloading: boolean,
+    fileUploadProgress: number,
+    fileDownloadProgress: number,
 
     setSelectedChatType: (selectedChatType: ChatType) => void;
     setSelectedChatData: (selectedChatData: UserData) => void;
     setSelectedChatMessages: (selectedChatMessages: MessageDataType[]) => void;
     setDirectMessagesContacts: (directMessagesContacts: []) => void;
+    setIsUploading: (isUploading: boolean) => void;
+    setIsDownloading: (isDownloading: boolean) => void;
+    setFileUploadProgress: (fileUploadProgress: number) => void;
+    setFileDownloadProgress: (fileDownloadProgress: number) => void;
 
     refreshContacts: () => void;
 
@@ -27,6 +35,10 @@ export const createChatSlice = (set: any, get: any, api: any ): ChatSlice => ({
     selectedChatMessages: [],
     directMessagesContacts: [],
     contactsLastUpdated: 0,
+    isUploading: false,
+    isDownloading: false,
+    fileUploadProgress: 0,
+    fileDownloadProgress: 0,
 
     setSelectedChatType: (selectedChatType: ChatType) => set({ selectedChatType}),
     setSelectedChatData: (selectedChatData: UserData) => set({
@@ -35,6 +47,10 @@ export const createChatSlice = (set: any, get: any, api: any ): ChatSlice => ({
     }),
     setSelectedChatMessages: (selectedChatMessages: MessageDataType[]) => set({ selectedChatMessages}),
     setDirectMessagesContacts: (directMessagesContacts: []) => set({ directMessagesContacts}),
+    setIsUploading: (isUploading: boolean) => set({ isUploading }),
+    setIsDownloading: (isDownloading: boolean) => set({ isDownloading }),
+    setFileUploadProgress: (fileUploadProgress: number) => set({ fileUploadProgress }),
+    setFileDownloadProgress: (fileDownloadProgress: number) => set({ fileDownloadProgress }),
 
     // Add this method to trigger contacts refresh
     refreshContacts: () => set({ contactsLastUpdated: Date.now() }),

@@ -7,7 +7,14 @@ import EmptyContainer from "./components/empty-chat-container";
 import ChatContainer from "./components/chat-container";
 
 const Chat = () => {
-  const { userInfo, selectedChatType } = useAppStore();
+  const {
+    userInfo,
+    selectedChatType,
+    isUploading,
+    isDownloading,
+    fileUploadProgress,
+    fileDownloadProgress,
+  } = useAppStore();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,6 +26,18 @@ const Chat = () => {
 
   return (
     <div className="flex h-screen w-screen overflow-hidden">
+      {isUploading && (
+        <div className="h-[100vh] w-[100vw] fixed top-0 left-0 z-10 bg-black/80 flex items-center justify-center flex-col gap-5 backdrop-blur-lg">
+          <h5 className="text-5xl animate-pulse">Uploading file</h5>
+          {fileUploadProgress}%
+        </div>
+      )}
+      {isDownloading && (
+        <div className="h-[100vh] w-[100vw] fixed top-0 left-0 z-10 bg-black/80 flex items-center justify-center flex-col gap-5 backdrop-blur-lg">
+          <h5 className="text-5xl animate-pulse">Downloading file</h5>
+          {fileDownloadProgress}%
+        </div>
+      )}
       <ContactsContainer />
       {selectedChatType === undefined ? <EmptyContainer /> : <ChatContainer />}
       {/* <EmptyContainer /> */}
