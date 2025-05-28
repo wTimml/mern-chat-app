@@ -77,7 +77,7 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
     };
 
     // Add handler for sent messages (if your backend emits this)
-    const handleMessageSent = (message: MessageDataType) => {
+    const handleMessageSent = () => {
       const store = useAppStore.getState();
       const { refreshContacts } = store;
 
