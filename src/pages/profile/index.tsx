@@ -81,7 +81,7 @@ const Profile = () => {
           toast.error("Failed to update profile");
         }
       } catch (error) {
-        console.error("Error saving changes:", error);
+        // console.error("Error saving changes:", error);
         toast.error("Error saving changes");
       }
     }
@@ -141,7 +141,7 @@ const Profile = () => {
         toast.error("Failed to delete profile image");
       }
     } catch (error) {
-      console.error("Error deleting image:", error);
+      // console.error("Error deleting image:", error);
     }
   };
 
@@ -159,7 +159,7 @@ const Profile = () => {
         navigate("/auth");
       }
     } catch (error) {
-      console.log("Error logging out:", error);
+      // console.log("Error logging out:", error);
     }
   };
   // TODO Handle Update Image and Double verification delete image

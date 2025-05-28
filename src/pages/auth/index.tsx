@@ -131,11 +131,11 @@ const Auth = () => {
           navigate("/profile");
         }
 
-        console.log({ response });
+        // console.log({ response });
       } catch (err: unknown) {
         const apiError = err as ApiError;
 
-        console.error(apiError.response?.data || apiError.message);
+        // console.error(apiError.response?.data || apiError.message);
         setSignupErrors([
           apiError.response?.data?.message ||
             "Signup failed. Please try again.",
@@ -188,12 +188,14 @@ const Auth = () => {
                     type="email"
                     value={loginEmail}
                     onChange={(e) => setLoginEmail(e.target.value)}
+                    autoComplete="email"
                   ></Input>
                   <Input
                     placeholder="Password"
                     type="password"
                     value={loginPassword}
                     onChange={(e) => setLoginPassword(e.target.value)}
+                    autoComplete="current-password"
                   ></Input>
                   {loginErrors.length > 0 && (
                     <div className="bg-surface text-red-700 p-3 rounded">
@@ -219,18 +221,21 @@ const Auth = () => {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    autoComplete="email"
                   ></Input>
                   <Input
                     placeholder="Password"
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    autoComplete="current-password"
                   ></Input>
                   <Input
                     placeholder="Confirm Password"
                     type="password"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
+                    autoComplete="current-password"
                   ></Input>
 
                   {signupErrors.length > 0 && (

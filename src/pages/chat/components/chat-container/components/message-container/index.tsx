@@ -41,7 +41,7 @@ const MessageContainer = () => {
           setSelectedChatMessages(response.data.messages);
         }
       } catch (error) {
-        console.error("Error fetching messages:", error);
+        // console.error("Error fetching messages:", error);
       }
     };
 
@@ -55,7 +55,7 @@ const MessageContainer = () => {
           setSelectedChatMessages(response.data.messages);
         }
       } catch (error) {
-        console.error("Error fetching messages:", error);
+        // console.error("Error fetching messages:", error);
       }
     };
 
@@ -127,7 +127,7 @@ const MessageContainer = () => {
       link.remove();
       window.URL.revokeObjectURL(urlBlob);
     } catch (error) {
-      console.error("Error downloading file:", error);
+      // console.error("Error downloading file:", error);
     } finally {
       setIsDownloading(false);
       setFileDownloadProgress(0);

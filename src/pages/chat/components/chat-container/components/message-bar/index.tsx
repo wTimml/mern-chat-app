@@ -120,7 +120,7 @@ const MessageBar = () => {
       }
     } catch (error) {
       setIsUploading(false);
-      console.error("Error attaching file:", error);
+      // console.error("Error attaching file:", error);
     }
   };
 

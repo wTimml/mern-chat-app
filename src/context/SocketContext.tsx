@@ -81,7 +81,7 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
       const store = useAppStore.getState();
       const { refreshContacts } = store;
 
-      console.log("Message sent confirmation:", message);
+      // console.log("Message sent confirmation:", message);
       // Refresh contacts when a message is sent
       refreshContacts();
     };

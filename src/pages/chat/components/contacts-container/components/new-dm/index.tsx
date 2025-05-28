@@ -46,7 +46,7 @@ const NewDM = () => {
         setSearchedContacts([]);
       }
     } catch (error) {
-      console.log("Error searching contacts:", error);
+      // console.log("Error searching contacts:", error);
     }
   };
 
