@@ -31,7 +31,6 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
   // 3. Updates chat state via Zustand store
   const socket = useRef<Socket | null>(null);
   const { userInfo } = useAppStore();
-  // console.log(userInfo);
 
   useEffect(() => {
     if (!userInfo?.id) return; // Don't connect if no user ID
@@ -41,9 +40,9 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
       query: { userId: userInfo?.id },
     });
 
-    socket.current.on("connect", () => {
-      console.log("Socket connected with userId:", userInfo.id);
-    });
+    // socket.current.on("connect", () => {
+    //   console.log("Socket connected with userId:", userInfo.id);
+    // });
 
     const handleReceiveMessage = (message: MessageDataType) => {
       const store = useAppStore.getState();
@@ -53,12 +52,6 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
         addMessage,
         refreshContacts,
       } = store;
-
-      // console.log("Received message:", {
-      //   message,
-      //   currentChat: selectedChatData?._id,
-      //   chatType: selectedChatType,
-      // });
 
       //refresh when receiving any message
       refreshContacts();
@@ -88,14 +81,32 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
       const store = useAppStore.getState();
       const { refreshContacts } = store;
 
-      console.log("Message sent confirmation:", message);
+      // console.log("Message sent confirmation:", message);
       // Refresh contacts when a message is sent
       refreshContacts();
+    };
+
+    const handleReceiveChannelMessage = (message: any) => {
+      const {
+        selectedChatData,
+        selectedChatType,
+        addMessage,
+        addChanelInChannelList,
+      } = useAppStore.getState();
+
+      if (
+        selectedChatType !== undefined &&
+        selectedChatData?._id === message.channelId
+      ) {
+        addMessage(message);
+      }
+      addChanelInChannelList(message);
     };
 
     // listener
     socket.current.on("receiveMessage", handleReceiveMessage);
     socket.current.on("messageSent", handleMessageSent);
+    socket.current.on("receive-channel-message", handleReceiveChannelMessage);
 
     return () => {
       if (socket.current) {

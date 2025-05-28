@@ -18,7 +18,6 @@ const ContactList = ({ contacts, isChannel = false }: any) => {
     }
   };
 
-  console.log(contacts);
   return (
     <div className="mt-5">
       {contacts.map((contact: any) => (
@@ -34,6 +33,24 @@ const ContactList = ({ contacts, isChannel = false }: any) => {
           <div className="flex gap-5 items-center justify-start text-neutral-300">
             {!isChannel && (
               <DisplayUserProfile userProfileData={contact} size={10} />
+            )}
+
+            {isChannel && (
+              <DisplayUserProfile
+                userProfileData={contact}
+                size={10}
+                showChatType="channel"
+              />
+              // <>
+              //   <div className={`w-10 h-10 relative`}>
+              //     <div
+              //       className={`flex h-10 w-10 items-center justify-center rounded-full border border-solid font-bold uppercase text-text-primary`}
+              //     >
+              //       #
+              //     </div>
+              //   </div>
+              //   <span>{contact?.name}</span>
+              // </>
             )}
           </div>
         </div>

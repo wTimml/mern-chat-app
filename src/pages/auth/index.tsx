@@ -103,12 +103,9 @@ const Auth = () => {
             navigate("/chat"); // If the user has a profile, redirect to chat
           else navigate("/profile");
         }
-
-        console.log({ response });
       } catch (err: unknown) {
         const apiError = err as ApiError;
 
-        console.error(apiError.response?.data || apiError.message);
         setLoginErrors([
           apiError.response?.data?.message || "Login failed. Please try again.",
         ]);

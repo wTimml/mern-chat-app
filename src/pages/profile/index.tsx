@@ -121,7 +121,6 @@ const Profile = () => {
       }
       const reader = new FileReader();
       reader.onloadend = () => {
-        // console.log("Image URL:", reader.result);
         setProfileImage(reader.result as string);
       };
       reader.readAsDataURL(file);

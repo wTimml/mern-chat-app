@@ -56,10 +56,17 @@ const MessageBar = () => {
 
       // Refresh contacts immediately after sending
       refreshContacts();
-
-      //clear input
-      setMessage("");
+    } else if (selectedChatType === "channel") {
+      socket.emit("send-channel-message", {
+        sender: userInfo?.id,
+        content: message,
+        messageType: "text",
+        fileUrl: undefined,
+        channelId: selectedChatData?._id,
+      });
     }
+    //clear input
+    setMessage("");
   };
 
   const handleAttachFile = () => {
@@ -99,6 +106,14 @@ const MessageBar = () => {
               recipient: selectedChatData?._id,
               messageType: "file",
               fileUrl: response.data.filePath,
+            });
+          } else if (selectedChatType === "channel") {
+            socket.emit("send-channel-message", {
+              sender: userInfo?.id,
+              content: undefined,
+              messageType: "file",
+              fileUrl: response.data.filePath,
+              channelId: selectedChatData?._id,
             });
           }
         }
