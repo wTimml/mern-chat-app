@@ -23,8 +23,6 @@ const MessageContainer = () => {
     setSelectedChatMessages,
     setFileDownloadProgress,
     setIsDownloading,
-    isDownloading,
-    fileDownloadProgress,
     userInfo,
   } = useAppStore();
 

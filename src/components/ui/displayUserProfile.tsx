@@ -2,7 +2,6 @@ import { getColor } from "@/lib/utils";
 import { HOST } from "@/utils/constants";
 import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 import type { UserData } from "@/types/userData";
-import { useAppStore } from "@/store";
 
 interface DisplayUserProfileProps {
   userProfileData: UserData;

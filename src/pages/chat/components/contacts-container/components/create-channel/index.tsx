@@ -25,8 +25,7 @@ import type { Option } from "@/components/ui/multipleSelect";
 import { useAppStore } from "@/store";
 
 const CreateChannel = () => {
-  const { setSelectedChatType, setSelectedChatData, addChannel } =
-    useAppStore();
+  const { addChannel } = useAppStore();
   const [newChannelModal, setNewChannelModal] = useState<boolean>(false);
   const [allContacts, setAllContacts] = useState<[]>([]);
   const [selectedContacts, setSelectedContacts] = useState<Option[]>([]);

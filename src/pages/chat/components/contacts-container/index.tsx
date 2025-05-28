@@ -15,7 +15,6 @@ export default function ContactsContainer() {
   const {
     setDirectMessagesContacts,
     directMessagesContacts,
-    contactsLastUpdated,
     channels,
     setChannels,
   } = useAppStore();

@@ -6,7 +6,7 @@ export interface AuthSlice {
   setUserInfo: (userInfo: UserData | undefined) => void;
 }
 
-export const createAuthSlice = (set: any, get: any, api: any): AuthSlice => ({
+export const createAuthSlice = (set: any): AuthSlice => ({
   userInfo: undefined,
   setUserInfo: (userInfo: UserData | undefined) => set({ userInfo }),
 });

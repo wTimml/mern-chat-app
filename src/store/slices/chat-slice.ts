@@ -35,7 +35,7 @@ export interface ChatSlice {
     addChanelInChannelList: (message: any) => void;
 }
 
-export const createChatSlice = (set: any, get: any, api: any ): ChatSlice => ({
+export const createChatSlice = (set: any, get: any): ChatSlice => ({
     selectedChatType: undefined,
     selectedChatData: undefined,
     selectedChatMessages: [],
